@@ -2,6 +2,45 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+  { skill: "Node.js", level: "advanced", color: "#5D8736" },
+  { skill: "NextJS", level: "beginner", color: "" },
+  { skill: "TailwindCSS", level: "advanced", color: "#2662EA" },
+  { skill: "MaterialUI", level: "advanced", color: "purple" },
+  { skill: "Firebase", level: "advanced", color: "#EFD81D" },
+  { skill: "MongoDB", level: "advanced", color: "green" },
+];
+
 function App() {
   return (
     <div className="container">
@@ -36,7 +75,7 @@ function Navbar() {
 
 function Header() {
   return (
-    <header className="header">
+    <header className="header" id="home">
       <div>
         <h1 className="typing">YASH VARDHAN</h1>
         <p>Welcome to my portfolio.</p>
@@ -47,57 +86,80 @@ function Header() {
 
 function Main() {
   return (
-    <main>
-      <section>
-        <h2 id="about">About Me</h2>
-        <p>
-          Mastering ReactJS, Tailwind CSS, and a suite of web design tools, I've
-          crafted responsive and dynamic web applications that are both robust
-          and user-friendly. Currently enrolled at Centurion University, my
-          academic journey is intertwined with a passion for Full-Stack
-          development. With Meta certifications in key areas like JavaScript and
-          version control, my aim is to merge theoretical knowledge with
-          practical skills to innovate and excel in the tech landscape.
-        </p>
-      </section>
-      <section>
-        <h2>Tech Stack</h2>
-        <div className="tech-stack" id="techstack">
-          <TechStack />
-        </div>
-      </section>
+    <>
+      <main className="main">
+        <section>
+          <h2 id="about">About Me</h2>
+          <p>
+            Mastering <span className="react">ReactJS</span>,{" "}
+            <span className="tailwind">Tailwind CSS</span>, and a suite of web
+            design tools, I've crafted <span className="respo">responsive</span>{" "}
+            and {""}
+            <span className="dyno">dynamic web applications</span> that are both
+            robust and user-friendly. Currently enrolled at {""}
+            <span className="cent">Centurion University</span>, my academic
+            journey is intertwined with a passion for Full-Stack development.
+            With <span className="meta">Meta</span> certifications in key areas
+            like <span className="java">JavaScript </span>and version control,
+            my aim is to merge theoretical knowledge with practical skills to
+            innovate and excel in the tech landscape.
+          </p>
+        </section>
+        <section>
+          <h2>Tech Stack</h2>
+          <div className="tech-stack" id="techstack">
+            <SkillList />
+          </div>
+        </section>
+      </main>
       <HireMe />
-    </main>
+    </>
   );
 }
 
-function TechStack() {
+function SkillList() {
   return (
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-      <li>React</li>
-      <li>Node.js</li>
-      <li>NextJS</li>
-      <li>TailwindCSS</li>
-      <li>MaterialUI</li>
-      <li>Firebase</li>
-      <li>MongoDB</li>
-    </ul>
+    <div className="skill-list">
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
+    </div>
+  );
+}
+
+function Skill({ skill, color, level }) {
+  return (
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span>
+    </div>
   );
 }
 
 function HireMe() {
   return (
-    <section>
+    <section className="hire_me">
       <h2 id="hireme">Hire Me</h2>
       <p>
         I am currently looking for opportunities in the field of Full-Stack
         development. If you are looking for a passionate and hardworking
         individual to join your team, feel free to reach out to me.
-        <a href="mailto:vardhan.yash3105@gmail.com" className="email">
-          Mail Me
+      </p>
+      <a href="mailto:vardhan.yash3105@gmail.com" className="email-button">
+        Mail Me
+      </a>
+      <p className="resume_main">
+        Download my{" "}
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href="https://drive.google.com/file/d/18rz3YVk_hDhtoJW9AxARkN2bR6PUVlCp/view?usp=sharing"
+        >
+          Resume
         </a>
       </p>
     </section>
@@ -106,8 +168,8 @@ function HireMe() {
 
 function Footer() {
   return (
-    <footer>
-      <p>&copy; 2021 My Portfolio</p>
+    <footer className="footer">
+      <p>&copy; 2025 My Portfolio</p>
     </footer>
   );
 }
